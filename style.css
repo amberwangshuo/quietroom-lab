@@ -400,7 +400,7 @@ body #top-settings-holder .drawer-icon.fa-plug-circle-exclamation::before {
 #chat {
   overflow-x: hidden;     gap: var(--hp-gap);
   padding: var(--hp-pad) var(--hp-pad) 0;
-  border: 0;
+  scrollbar-gutter: stable both-edges;     border: 0;
   background: none;
   color: var(--hp-ink);
   text-shadow: none;
@@ -2009,20 +2009,22 @@ code {
 
 #options .options-content a,
 #extensionsMenu > div:not(.extension_container),
-#extensionsMenu > .extension_container > div {
+#extensionsMenu > .extension_container > :is(div, a) {
   display: flex;
   align-items: center;
   gap: 0.7em;
   padding: 0.4em 1em;
   color: var(--hp-ink);
   opacity: 0.9;
+  text-decoration: none;
 }
 
 #options .options-content a:hover,
 #extensionsMenu > div:not(.extension_container):hover,
-#extensionsMenu > .extension_container > div:hover {
+#extensionsMenu > .extension_container > :is(div, a):hover {
   background: var(--hp-paper);
   opacity: 1;
+  color: var(--hp-ink);
 }
 
 #options .options-content a i,
