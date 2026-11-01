@@ -1880,7 +1880,7 @@ const CONFIG = {
 
   // 打开聊天时酒馆先滚到底，主题的 CSS 常常后到：横幅、页脚是后长出来的，页脚就正好藏在底边下面一截（她和用户都见过「页脚被输入栏切掉半截」）。
   // 换聊天、装上以后等页面稳一下，如果离底只差页脚那么一点，就补滚到底。只在这两个时机做，不碰生成时的滚动；TT 虚拟化下不做
-  const HP_SCRIPT_VERSION = '2.5.1';
+  const HP_SCRIPT_VERSION = '2.6.0';
   let settleT = 0;
   function settleBottom() {
     clearTimeout(settleT);
@@ -1933,6 +1933,13 @@ const CONFIG = {
     applyVisits();
     buildGate();
     settleBottom();
+    // 字体（文楷、等宽字）常常比聊天晚到，到了以后消息和页脚重新折行、长高，底就又空出一截：字体到齐再补一次。只听事件，不轮询
+    if (doc.fonts) {
+      const onFonts = () => settleBottom();
+      doc.fonts.ready.then(onFonts).catch(() => {});
+      doc.fonts.addEventListener('loadingdone', onFonts);
+      cleanups.push(() => doc.fonts.removeEventListener('loadingdone', onFonts));
+    }
   }
   function teardown() {
     while (cleanups.length) { try { cleanups.pop()(); } catch (e) { /* 已经没了 */ } }

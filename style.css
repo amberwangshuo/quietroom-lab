@@ -1,4 +1,4 @@
-/* 「实验 QuietRoom.org 2.5 左栏收起版」仿个人博客小站
+/* 「实验 QuietRoom.org 2.6 左栏收起版」仿个人博客小站
    作者：王北方。仅在酒馆内使用，不可商用二传；二改自用请随意 (｡•ᴗ•｡)
    图来自 Pinterest 公开图和 Canva 素材，仅自用。
    致谢 Discord「旅程」美化教程帖与各位老师：
@@ -514,6 +514,24 @@ body #top-settings-holder .drawer-icon.fa-plug-circle-exclamation::before {
   text-align: center;
   white-space: pre-wrap;
   color: var(--hp-ink2);
+}
+
+@keyframes hp-settle {
+  from { scroll-snap-type: y proximity; }
+  to { scroll-snap-type: none; }
+}
+
+#chat:not([data-tt-chat-surface]) {
+  animation: hp-settle 20s step-end both;
+}
+
+body[data-generating="true"] #chat {
+  scroll-snap-type: none !important;
+}
+
+#chat::after {
+  scroll-snap-align: end;
+  scroll-margin-bottom: var(--hp-pad);
 }
 
 #chat[data-tt-chat-surface="bounded"] {
