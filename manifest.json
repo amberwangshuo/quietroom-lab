@@ -1,0 +1,12 @@
+{
+  "display_name": "实验 QuietRoom.org（左栏收起版 + 配套脚本）",
+  "loading_order": 100,
+  "requires": [],
+  "optional": [],
+  "js": "index.js",
+  "css": "style.css",
+  "author": "王北方",
+  "version": "2.5.1-20261101",
+  "homePage": "https://github.com/amberwangshuo/quietroom-lab",
+  "auto_update": true
+}
